@@ -11,7 +11,7 @@ pipeline {
 
         stage('build phase') {
             steps {
-                build 'maven_project'
+                build 'Gokarna K'
             }
         }
 
