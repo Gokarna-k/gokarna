@@ -1,0 +1,29 @@
+pipeline {
+agent any
+stages{
+stage('fetching the code from github')
+{
+steps{
+git branch: 'dev' , url: 'https://github.com/Gokarna-k/gokarna.git'
+}
+stage('build phase')
+{
+steps{
+build 'maven_project'
+}
+}
+stage('test')
+{
+steps{
+echo 'hi'
+}
+}
+stage('deploy')
+{
+steps{
+echo 'deployed'
+}
+}
+
+
+
