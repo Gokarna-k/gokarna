@@ -3,31 +3,30 @@ pipeline {
 
     stages {
 
-        stage('fetching the code from github') {
+        stage('Fetching Code From GitHub') {
             steps {
-                git branch: 'dev', url: 'https://github.com/Gokarna-k/gokarna.git'
+                git branch: 'dev',
+                    url: 'https://github.com/Gokarna-k/gokarna.git'
             }
         }
 
-        stage('build phase') {
+        stage('Build Phase') {
             steps {
-                build 'Gokarna K'
+                sh 'mvn clean install'
             }
         }
 
-        stage('test') {
+        stage('Test Phase') {
             steps {
-                echo 'hi'
+                echo 'Running tests...'
             }
         }
 
-        stage('deploy') {
+        stage('Deploy Phase') {
             steps {
-                echo 'deployed'
+                echo 'Application deployed'
             }
         }
     }
 }
-
-
 
