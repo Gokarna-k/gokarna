@@ -31,7 +31,7 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -d -p 8080:8080 --name pixel-container pixel-forge-app'
+                sh 'docker run -d -p 7000:8080 --name pixel-container pixel-forge-app'
             }
         }
     }
