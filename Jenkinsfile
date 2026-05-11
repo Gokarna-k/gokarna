@@ -45,7 +45,8 @@ pipeline {
 
             steps {
 
-                sh 'docker run -itd --name app1 -p 600:8080 app'
+                sh 'docker run -itd --name app1 -p 600:8080 -v v1:/usr/local/tomcat/webapps \
+                app'
 
             }
         }
