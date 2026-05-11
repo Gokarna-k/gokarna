@@ -45,7 +45,7 @@ pipeline {
 
             steps {
 
-                sh 'docker run -itd --name app1 -p 6000:8080 app'
+                sh 'docker run -itd --name app1 -p 600:8080 app'
 
             }
         }
