@@ -58,10 +58,10 @@ pipeline {
 
             emailext(
 
-                subject: "Jenkins Build Success",
+                subject: "Jenkins Build SUCCESS",
 
                 body: """
-                Build completed successfully.
+                Build Success
 
                 Job Name: ${JOB_NAME}
                 Build Number: ${BUILD_NUMBER}
@@ -78,15 +78,15 @@ pipeline {
 
             emailext(
 
-                subject: "Jenkins Build Failed",
+                subject: "Jenkins Build FAILURE",
 
                 body: """
-                Build failed.
+                Build Failed
 
                 Job Name: ${JOB_NAME}
                 Build Number: ${BUILD_NUMBER}
 
-                Check Jenkins console output for errors.
+                Check Jenkins Console Output.
 
                 """,
 
