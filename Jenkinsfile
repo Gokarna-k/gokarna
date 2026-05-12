@@ -1,34 +1,68 @@
 pipeline{
-agent any
-stages{
-stage('fetch code from github')
-{
-steps{
-git branch: 'main', url: 'https://github.com/Gokarna-k/gokarna.git'
-}
-}
-stage('build phase')
-{
-steps{
-sh 'mvn clean install'
-}
-}
-stage('create image')
-{
-steps{
-sh 'docker build -t app .'
-}
-}
-stage('remove old conatiner')
-{
-steps{
-sh 'docker rm -f app1 || true'
-}}
-stage('create container')
-{
-steps{
-sh 'docker run -itd --name app1 -p 6000:8080 app'
-}
-}}
-}
+    agent any
 
+    stages{
+
+        stage('fetching code from github') {
+            steps{
+                git branch: 'main', url: 'https://github.com/Gokarna-k/gokarna.git'
+            }
+        }
+
+        stage('build phase') {
+            steps{
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('create image') {
+            steps{
+                sh 'docker build -t app1 .'
+            }
+        }
+
+        stage('remove existing container') {
+            steps{
+                sh 'docker rm -f app || true'
+            }
+        }
+
+        stage('create container') {
+            steps{
+                sh 'docker run -itd --name app -p 5000:8080 -v v1:/usr/local/tomcat/webapps app1'
+            }
+        }
+
+    }   // stages closing
+
+    post {
+
+        success {
+            emailext(
+                subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: """
+Build Success
+
+Job Name: ${env.JOB_NAME}
+Build Number: ${env.BUILD_NUMBER}
+Build URL: ${env.BUILD_URL}
+                """,
+                to: 'kgokarna789@gmail.com'
+            )
+        }
+
+        failure {
+            emailext(
+                subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: """
+Build Failed
+
+Job Name: ${env.JOB_NAME}
+Build Number: ${env.BUILD_NUMBER}
+Build URL: ${env.BUILD_URL}
+                """,
+                to: 'kgokarna789@gmail.com'
+            )
+        }
+    }
+}
