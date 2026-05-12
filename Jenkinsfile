@@ -154,5 +154,4 @@ Build URL: ${env.BUILD_URL}
 
     }
 
->>>>>>> 9faaf7f165184b24ae5c2ce5ae875cf66549ef6e
 }
