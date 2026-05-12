@@ -7,7 +7,6 @@ pipeline{
         stage('fetching code from github') {
             steps{
                 git branch: 'main', url: 'https://github.com/Gokarna-k/gokarna.git'
-=======
 pipeline {
 
     agent any
@@ -21,20 +20,19 @@ pipeline {
                 git branch: 'main',
                 url: 'https://github.com/Gokarna-k/gokarna.git'
 
->>>>>>> 9faaf7f165184b24ae5c2ce5ae875cf66549ef6e
             }
         }
 
         stage('build phase') {
             steps{
                 sh 'mvn clean install'
-=======
+
 
             steps {
 
                 sh 'mvn clean install'
 
->>>>>>> 9faaf7f165184b24ae5c2ce5ae875cf66549ef6e
+
             }
         }
 
@@ -47,7 +45,6 @@ pipeline {
         stage('remove existing container') {
             steps{
                 sh 'docker rm -f app || true'
-=======
 
             steps {
 
@@ -62,7 +59,6 @@ pipeline {
 
                 sh 'docker rm -f app1 || true'
 
->>>>>>> 9faaf7f165184b24ae5c2ce5ae875cf66549ef6e
             }
         }
 
@@ -73,7 +69,7 @@ pipeline {
         }
 
     }   // stages closing
-=======
+
 
             steps {
 
@@ -84,7 +80,6 @@ pipeline {
         }
 
     }
->>>>>>> 9faaf7f165184b24ae5c2ce5ae875cf66549ef6e
 
     post {
 
@@ -116,7 +111,6 @@ Build URL: ${env.BUILD_URL}
             )
         }
     }
-=======
 
             emailext(
 
