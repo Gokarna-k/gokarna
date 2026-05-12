@@ -26,7 +26,6 @@ pipeline {
         }
 
         stage('build phase') {
-<<<<<<< HEAD
             steps{
                 sh 'mvn clean install'
 =======
@@ -40,7 +39,6 @@ pipeline {
         }
 
         stage('create image') {
-<<<<<<< HEAD
             steps{
                 sh 'docker build -t app1 .'
             }
@@ -69,7 +67,6 @@ pipeline {
         }
 
         stage('create container') {
-<<<<<<< HEAD
             steps{
                 sh 'docker run -itd --name app -p 5000:8080 -v v1:/usr/local/tomcat/webapps app1'
             }
@@ -92,7 +89,6 @@ pipeline {
     post {
 
         success {
-<<<<<<< HEAD
             emailext(
                 subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """
